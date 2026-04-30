@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CD FullVoley — Villa Alemana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --orange: #E85D04;
+      --orange-dark: #9C2D00;
+      --orange-light: #FF8C42;
+      --black: #0e0e0e;
+      --dark: #1a1a1a;
+      --mid: #2a2a2a;
+      --white: #ffffff;
+      --gray: #f5f4f0;
+      --muted: #888;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+    /* ── SVG LOGO ── */
+    .logo-svg { display: block; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      background: var(--black); border-bottom: 2.5px solid var(--orange);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand-text { color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #bbb; font-size: 13px; text-decoration: none; letter-spacing: 0.5px; transition: color .2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 8px 20px; border-radius: 6px; border: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--orange-light); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black);
+      padding: 5rem 2.5rem 4rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      gap: 1.25rem; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(232,93,4,.15), transparent);
+      pointer-events: none;
+    }
+    .hero-badge {
+      background: var(--orange-dark); color: var(--white);
+      font-size: 11px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 20px;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(42px, 8vw, 72px); font-weight: 900;
+      color: var(--white); line-height: 1.05; max-width: 640px;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero p { font-size: 15px; color: #aaa; max-width: 440px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 12px; margin-top: 0.5rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--orange); color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--orange-light); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+      font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 12px 28px; border-radius: 8px; border: 1.5px solid #444; cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--dark); border-top: 1px solid #2a2a2a;
+    }
+    .stat {
+      padding: 1.75rem 1rem; text-align: center;
+      border-right: 1px solid #2a2a2a;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px; font-weight: 900; color: var(--orange);
+    }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.5px; }
+
+    /* ── SECTION ── */
+    .section { padding: 3rem 2.5rem; }
+    .section-header { margin-bottom: 1.5rem; }
+    .section-label {
+      font-size: 11px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 32px; font-weight: 900; text-transform: uppercase;
+      letter-spacing: 1px; line-height: 1.1;
+    }
+
+    /* ── CATEGORÍAS ── */
+    .cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cat {
+      background: var(--black); color: var(--white);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      border: 1px solid #2a2a2a;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: border-color .2s;
+    }
+    .cat:hover { border-color: var(--orange); }
+    .cat-gender {
+      font-size: 10px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--orange);
+    }
+    .cat-name { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; }
+    .cat-ages { font-size: 13px; color: #888; }
+    .cat-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+    .tag {
+      font-size: 11px; background: #2a2a2a; color: #ccc;
+      padding: 3px 10px; border-radius: 4px;
+    }
+
+    /* ── NOTICIAS ── */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .news-card {
+      background: var(--gray); border-radius: 12px; overflow: hidden;
+      border: 0.5px solid #e0e0e0; transition: transform .2s;
+    }
+    .news-card:hover { transform: translateY(-3px); }
+    .news-thumb {
+      height: 90px; display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 22px; letter-spacing: 1px;
+    }
+    .news-body { padding: 12px 14px; }
+    .news-tag {
+      font-size: 10px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      background: #fde8d8; color: var(--orange-dark);
+      padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px;
+    }
+    .news-title { font-size: 13px; font-weight: 500; line-height: 1.4; color: #111; }
+    .news-date { font-size: 11px; color: #999; margin-top: 6px; }
+
+    /* ── FIXTURE ── */
+    .fixture { background: var(--black); border-radius: 12px; overflow: hidden; }
+    .fixture-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem; border-bottom: 1px solid #2a2a2a; color: var(--white);
+    }
+    .fixture-row:last-child { border-bottom: none; }
+    .fixture-date { font-size: 12px; color: var(--muted); min-width: 100px; }
+    .fixture-teams {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700;
+      flex: 1; text-align: center;
+    }
+    .fixture-teams span { color: var(--orange); }
+    .fixture-info { font-size: 12px; color: var(--muted); min-width: 100px; text-align: right; }
+
+    /* ── CTA CONTACTO ── */
+    .cta-bar {
+      background: var(--orange);
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .cta-bar-text p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 900; color: var(--white);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .cta-bar-text small { font-size: 13px; color: rgba(255,255,255,.8); }
+    .btn-white {
+      background: var(--white); color: var(--orange);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 11px 24px; border-radius: 8px; border: none; cursor: pointer;
+      white-space: nowrap; transition: opacity .2s;
+    }
+    .btn-white:hover { opacity: .9; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); border-top: 1px solid #2a2a2a;
+      padding: 1.5rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand span {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 16px;
+      font-weight: 700; color: var(--orange); letter-spacing: 1px;
+    }
+    footer p { font-size: 12px; color: #555; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .cats { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .section { padding: 2rem 1.25rem; }
+      .cta-bar { padding: 1.5rem 1.25rem; }
+      footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Inline SVG logo symbol -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+    <symbol id="flv-logo" viewBox="0 0 80 80">
+      <polygon points="40,2 78,40 40,78 2,40" fill="#E85D04"/>
+      <polygon points="40,11 69,40 40,69 11,40" fill="#111" stroke="#E85D04" stroke-width="2.5"/>
+      <text x="12" y="48" font-family="Arial Black,sans-serif" font-weight="900" font-size="19" fill="#E85D04">F</text>
+      <text x="30" y="48" font-family="Arial Black,sans-serif" font-weight="900" font-size="19" fill="#fff">L</text>
+      <text x="48" y="48" font-family="Arial Black,sans-serif" font-weight="900" font-size="19" fill="#E85D04">V</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <svg class="logo-svg" width="40" height="40"><use href="#flv-logo"/></svg>
+    <span class="nav-brand-text">FullVoley</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categorias">Categorías</a></li>
+    <li><a href="#fixture">Partidos</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-cta">Únete al club</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Club deportivo · Villa Alemana</div>
+  <svg class="logo-svg" width="100" height="100" style="margin:.5rem 0"><use href="#flv-logo"/></svg>
+  <h1>Somos <span>FullVoley</span>,<br>jugamos con todo</h1>
+  <p>Formación deportiva para varones y damas desde U12 hasta Honor. Competencia, técnica y comunidad en Villa Alemana.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('categorias').scrollIntoView({behavior:'smooth'})">Ver categorías</button>
+    <button class="btn-outline" onclick="document.getElementById('fixture').scrollIntoView({behavior:'smooth'})">Próximos partidos</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">359</div><div class="stat-label">Publicaciones</div></div>
+  <div class="stat"><div class="stat-num">5.3K</div><div class="stat-label">Seguidores IG</div></div>
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Categorías</div></div>
+  <div class="stat"><div class="stat-num">2</div><div class="stat-label">Ramas activas</div></div>
+</div>
+
+<!-- CATEGORÍAS -->
+<section class="section" id="categorias">
+  <div class="section-header">
+    <div class="section-label">El club</div>
+    <div class="section-title">Nuestras categorías</div>
+  </div>
+  <div class="cats">
+    <div class="cat">
+      <span class="cat-gender">Varones</span>
+      <span class="cat-name">Rama masculina</span>
+      <span class="cat-ages">Categorías disponibles</span>
+      <div class="cat-tags">
+        <span class="tag">U12</span><span class="tag">U14</span><span class="tag">U16</span>
+        <span class="tag">U18</span><span class="tag">U20</span><span class="tag">Honor</span>
+      </div>
+    </div>
+    <div class="cat">
+      <span class="cat-gender">Damas</span>
+      <span class="cat-name">Rama femenina</span>
+      <span class="cat-ages">Categorías disponibles</span>
+      <div class="cat-tags">
+        <span class="tag">U12</span><span class="tag">U14</span><span class="tag">U16</span>
+        <span class="tag">U18</span><span class="tag">U20</span><span class="tag">Honor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIXTURE -->
+<section class="section" id="fixture" style="background:#f9f8f5; border-top:.5px solid #eee; border-bottom:.5px solid #eee;">
+  <div class="section-header">
+    <div class="section-label">Agenda</div>
+    <div class="section-title">Próximos partidos</div>
+  </div>
+  <div class="fixture">
+    <div class="fixture-row">
+      <span class="fixture-date">Sáb 2 Mayo</span>
+      <span class="fixture-teams"><span>FullVoley</span> vs Zenith</span>
+      <span class="fixture-info">16:00 · CEV Chicureo</span>
+    </div>
+    <div class="fixture-row">
+      <span class="fixture-date">Dom 3 Mayo</span>
+      <span class="fixture-teams"><span>FullVoley</span> vs Águilas Agustinas</span>
+      <span class="fixture-info">15:00 · CEV Chicureo</span>
+    </div>
+    <div class="fixture-row">
+      <span class="fixture-date">Por confirmar</span>
+      <span class="fixture-teams">Liga Central de Clubes</span>
+      <span class="fixture-info">Grupo A</span>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+<section class="section" id="noticias">
+  <div class="section-header">
+    <div class="section-label">Actualidad</div>
+    <div class="section-title">Últimas noticias</div>
+  </div>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-thumb" style="background:#111; color:#E85D04;">LIGA A3</div>
+      <div class="news-body">
+        <span class="news-tag">Partido</span>
+        <div class="news-title">Liga A3 vs Zenith — Sábado 2 de mayo, 16:00 hrs</div>
+        <div class="news-date">CEV Chicureo</div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:#1a1a1a; color:#fff;">7MO LUGAR</div>
+      <div class="news-body">
+        <span class="news-tag">Resultado</span>
+        <div class="news-title">7mo lugar en LINAME A4 — Categoría U</div>
+        <div class="news-date">Mayo 2025</div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:#E85D04; color:#fff;">GRUPO A</div>
+      <div class="news-body">
+        <span class="news-tag">Torneo</span>
+        <div class="news-title">Liga Central de Clubes — Clasificados al Grupo A</div>
+        <div class="news-date">Temporada 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CONTACTO -->
+<div class="cta-bar" id="contacto">
+  <div class="cta-bar-text">
+    <p>¿Quieres ser parte del club?</p>
+    <small>Inscripciones abiertas para todas las categorías</small>
+  </div>
+  <button class="btn-white" onclick="window.open('https://www.instagram.com/cd_fullvoley','_blank')">Contáctanos en Instagram</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <svg class="logo-svg" width="30" height="30"><use href="#flv-logo"/></svg>
+    <span>CD FullVoley</span>
+  </div>
+  <p>Villa Alemana, Chile · Fundado por @falck_</p>
+  <p style="color:#444;">© 2025 FullVoley · Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>
